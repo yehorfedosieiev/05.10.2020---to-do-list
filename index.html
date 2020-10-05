@@ -11,10 +11,37 @@
 </head>
 <body>
     <div class="container">
+
         <div>
             <h1>TODO list</h1>
         </div>
-        <button type="button" class="btn btn-primary btn-lg m-b-30" data-toggle="modal" data-target="#modalAddTask">Launch modal</button>
+
+        <div class="text-right">
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalAddTask">
+                <i class="glyphicon glyphicon-plus"></i>&nbsp;Add task
+            </button>
+        </div>
+
+        <ul class="nav nav-tabs" role="tablist">
+			<li class="active"><a href="#tab1" data-toggle="tab">To do</a></li>
+			<li><a href="#tab2" data-toggle="tab">In progress</a></li>
+			<li><a href="#tab3" data-toggle="tab">Done</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="todo">
+				<ul class="list-group" data-status="1"></ul>
+			</div>
+
+			<div role="tabpanel" class="tab-pane" id="inprogress">
+				<ul class="list-group" data-status="2"></ul>
+			</div>
+
+			<div role="tabpanel" class="tab-pane" id="done">
+				<ul class="list-group" data-status="3"></ul>
+			</div>
+		</div>
+
     </div>
     <!-- Modal -->
     <div class="modal fade" id="modalAddTask" tabindex="-1" role="dialog" aria-hidden="true">
