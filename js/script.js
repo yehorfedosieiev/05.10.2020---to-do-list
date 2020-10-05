@@ -5,12 +5,12 @@ formAddTask.addEventListener('submit', handleFormAdSubmit);
 function handleFormAdSubmit(event){
     event.preventDefault();
 
-    console.log('this', this);
-    console.dir(this);
+    // console.log('this', this);
+    // console.dir(this);
 
-    console.log(this.querySelector('[name="title"]'));
+    // console.log(this.querySelector('[name="title"]'));
 
-    console.log("то что в input", this.querySelector('[name="title"]').value); // то что в input
+    // console.log("то что в input", this.querySelector('[name="title"]').value); // то что в input
 
     const task = {
         title: this.querySelector('[name="title"]').value,
@@ -41,7 +41,7 @@ function addTask(task){
 };
 
 for(let key in localStorage){
-    if (!localStorage.hasOwnProperty[key]) continue;
+    if (!localStorage.hasOwnProperty(key)) continue;
     
     const task = JSON.parse(localStorage[key]);
     addTask(task);
