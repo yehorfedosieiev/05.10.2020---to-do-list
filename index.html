@@ -20,12 +20,15 @@
             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalAddTask">
                 <i class="glyphicon glyphicon-plus"></i>&nbsp;Add task
             </button>
+            <button type="button" class="btn btn-danger btn-lg" id="removeAllTask">
+                <i class="glyphicon glyphicon-remove"></i>&nbsp;Remove all
+            </button>
         </div>
 
         <ul class="nav nav-tabs" role="tablist">
-			<li class="active"><a href="#tab1" data-toggle="tab">To do</a></li>
-			<li><a href="#tab2" data-toggle="tab">In progress</a></li>
-			<li><a href="#tab3" data-toggle="tab">Done</a></li>
+			<li class="active"><a href="#todo" data-toggle="tab">To do</a></li>
+			<li><a href="#inprogress" data-toggle="tab">In progress</a></li>
+			<li><a href="#done" data-toggle="tab">Done</a></li>
 		</ul>
 
 		<div class="tab-content">
@@ -43,6 +46,40 @@
 		</div>
 
     </div>
+
+    <!-- Statistic panel -->>
+    <div class="container margin">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">Should be done</div>
+                    <div class="panel-body">
+                        Task count:
+                        <span class="badge" data-status-count="1">0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">Should be done soon</div>
+                    <div class="panel-body">
+                        Task count:
+                        <span class="badge" data-status-count="2">0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-success">
+                    <div class="panel-heading">Already done</div>
+                    <div class="panel-body">
+                        Task count:
+                        <span class="badge" data-status-count="3">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal -->
     <div class="modal fade" id="modalAddTask" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
