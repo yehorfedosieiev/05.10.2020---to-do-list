@@ -47,7 +47,7 @@
 
     </div>
 
-    <!-- Statistic panel -->>
+    <!-- Statistic panel -->
     <div class="container margin">
         <div class="row">
             <div class="col-md-4">
@@ -59,6 +59,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4">
                 <div class="panel panel-warning">
                     <div class="panel-heading">Should be done soon</div>
@@ -68,6 +69,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4">
                 <div class="panel panel-success">
                     <div class="panel-heading">Already done</div>
@@ -80,7 +82,7 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Add Task-->
     <div class="modal fade" id="modalAddTask" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -102,6 +104,42 @@
                 <div class="modal-footer">
                     <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
                     <button class="btn btn-success" form="formAddTask">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit Task-->
+    <div class="modal fade" id="modalEditTask" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Edit task</h4>
+                </div>
+
+                <div class="modal-body">
+                    <form id="formEditTask">
+                        <!-- для handleFormEditSubmit в script.js - input чтобы знать с каким  id имеем дело-->
+                        <input type="hidden" name="id">
+                        <div class="form-group">
+                            <input type="text" name="title" placeholder="Title" autofocus="true" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <select name="status" class="form-control">
+                                <option value="1">To Do</option>
+                                <option value="2">In progress</option>
+                                <option value="3">Done</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-success" form="formEditTask">Ok</button>
                 </div>
             </div>
         </div>

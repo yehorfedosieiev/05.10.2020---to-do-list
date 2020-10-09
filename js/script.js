@@ -1,9 +1,30 @@
 const formAddTask = document.querySelector("#formAddTask");
+const formEditTask = document.querySelector("#formEditTask");
+
 
 formAddTask.addEventListener('submit', handleFormAdSubmit);
+formEditTask.addEventListener('submit', handleFormEditSubmit);
+
+function handleFormEditSubmit(event){
+    event.preventDefault();
+
+    const task = {
+        title: this.querySelector('[name="title"]').value,
+        status: +this.querySelector('[name="status"]').value,
+        id: this.querySelector('[name="id"]').value
+    };
+
+    localStorage.setItem(task.id, JSON.stringify(task));
+    document.querySelector(`[data-id="${task.id}"]`).remove();
+    addTask(task);
+
+    $('#modalEditTask').modal('hide');
+    
+    showStatistic ();
+}
 
 function handleFormAdSubmit(event){
-    event.preventDefault();
+    event.preventDefault(); //отменяет поведение по умолчанию - чтобы форма не отправляла на сервер данные
 
     console.log('----------');
     console.log('this =', this);
@@ -41,7 +62,21 @@ function addTask(task){
     const taskListItem = document.createElement("li");
     taskListItem.classList.add('list-group-item');
     taskListItem.innerText = task.title;
+    taskListItem.setAttribute('data-id', task.id); //добавляем li атрибут, а именно дату создания
     taskList.appendChild(taskListItem);
+    
+    //кнопка Delete на тикетах
+    const btnDelete = document.createElement('button');
+    btnDelete.classList.add('btn', 'btn-danger', 'btn-xs', 'btn-delete', 'pull-right');
+    btnDelete.innerHTML = '<i class="glyphicon glyphicon-trash"></i>';
+    taskListItem.appendChild(btnDelete);
+
+    //кнопка Edit на тикетах
+    const btnEdit = document.createElement('button');
+    btnEdit.classList.add('btn', 'btn-warning', 'btn-xs', 'btn-edit', 'pull-right');
+    btnEdit.innerHTML = '<i class="glyphicon glyphicon-pencil"></i>';
+    taskListItem.appendChild(btnEdit);
+
     showStatistic ();
 };
 
@@ -53,8 +88,45 @@ for(let key in localStorage){
     console.log('----------');
     addTask(task);
 }
-//-----Homework-----
 
+document.querySelector('body').addEventListener('click', function(event){
+    // console.log(event.target.classList.contains('btn-delete'));
+    
+    // const target = event.target;
+    
+    //деструктуризация - то же самое, что и верхнее
+    const {target} = event;
+    
+    //обработка кнопки delete
+    if (event.target.classList.contains('btn-delete')){
+        console.log(target.parentNode);
+        const taskId = target.parentNode.getAttribute('data-id');
+        console.log(taskId);
+        localStorage.removeItem(taskId);
+        target.parentNode.remove();
+        showStatistic ();
+    }
+
+    //обработка кнопки edit
+    if (event.target.classList.contains('btn-edit')){
+        $('#modalEditTask').modal('show');
+        const taskId = target.parentNode.getAttribute('data-id');
+        const task = JSON.parse(localStorage.getItem(taskId));
+        console.log('task', task);
+
+        console.log(formEditTask.elements);
+        for (let key in task){
+            console.log('key', key);
+            if(!formEditTask.elements[key]) continue;
+
+            formEditTask.elements[key].value = task[key];
+        }
+    }
+
+});
+
+
+//-----Homework 1-----
 const removeAllTask = document.querySelector('#removeAllTask');
 
 removeAllTask.addEventListener('click', removeTasks);

@@ -1,3 +1,12 @@
 .tab-content{
     padding-top: 15px;
 }
+
+.btn-edit{
+    margin-right: 5px;
+}
+
+/* i делаем некликабельными */
+i{
+    pointer-events: none;
+}
