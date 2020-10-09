@@ -19,7 +19,7 @@ for(let key in localStorage){
     addTask(task);
 }
 
-document.querySelector('body').addEventListener('click', HanleButtonClick);
+document.querySelector('body').addEventListener('click', handleButtonClick);
 
 
 //-----Homework 1-----
