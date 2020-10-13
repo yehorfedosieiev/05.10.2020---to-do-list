@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"></link>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"></link>
     <link rel="stylesheet" href="css/style.css"></link>
     <title>TODO list</title>
 </head>
@@ -98,6 +102,19 @@
                         <div class="form-group">
                             <input type="text" name="title" placeholder="Title" autofocus="true" class="form-control">
                         </div>
+
+                        <div class="form-group">
+                            <div class="input-group date" data-provide="datepicker">
+                                <input type="text" name="date" class="form-control" id="picker" placeholder="mm-dd-yyyy" autocomplete="off">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea class="form-control description-field" name="description" id="" cols="30" rows="10"></textarea>
+                        </div>
                     </form>
                 </div>
 
@@ -124,6 +141,7 @@
                     <form id="formEditTask">
                         <!-- для handleFormEditSubmit в script.js - input чтобы знать с каким  id имеем дело-->
                         <input type="hidden" name="id">
+                        <!-- ------ -->
                         <div class="form-group">
                             <input type="text" name="title" placeholder="Title" autofocus="true" class="form-control">
                         </div>
@@ -133,6 +151,17 @@
                                 <option value="2">In progress</option>
                                 <option value="3">Done</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group date" data-provide="datepicker">
+                                <input type="text" name="date" class="form-control" id="picker" placeholder="mm-dd-yyyy" autocomplete="off">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control description-field" name="description" id="" cols="30" rows="10"></textarea>
                         </div>
                     </form>
                 </div>
