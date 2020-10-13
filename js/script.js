@@ -1,14 +1,5 @@
-
-
-
 formAddTask.addEventListener('submit', handleFormAdSubmit);
 formEditTask.addEventListener('submit', handleFormEditSubmit);
-
-
-
-
-
-
 
 for(let key in localStorage){
     if (!localStorage.hasOwnProperty(key)) continue;
@@ -21,11 +12,4 @@ for(let key in localStorage){
 
 document.querySelector('body').addEventListener('click', handleButtonClick);
 
-
-//-----Homework 1-----
-
-
 removeAllTask.addEventListener('click', removeTasks);
-
-
-

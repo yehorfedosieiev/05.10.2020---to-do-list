@@ -25,6 +25,30 @@ function addTask(task){
     btnEdit.innerHTML = '<i class="glyphicon glyphicon-pencil"></i>';
     taskListItem.appendChild(btnEdit);
 
+    //кнопка Info на тикетах + описание
+    const btnInfo = document.createElement('button');
+    btnInfo.classList.add('btn', 'btn-primary', 'btn-xs', 'btn-info', 'pull-right');
+    btnInfo.innerHTML = '<i class="glyphicon glyphicon-fullscreen"></i>';
+    btnInfo.setAttribute('data-toggle', 'collapse');
+    btnInfo.setAttribute('data-target', '#info' + task.id);
+    taskListItem.appendChild(btnInfo);
+
+    const dl = document.createElement('dl');
+    const dt = document.createElement('dt');
+    dt.innerText = task.date;
+    const dd = document.createElement('dd');
+    dd.innerText = task.description;
+    
+    const taskInfo = document.createElement('div');
+    taskInfo.classList.add('collapse', 'container');
+    taskInfo.setAttribute('id', 'info' + task.id);
+    taskListItem.appendChild(taskInfo);
+
+    taskListItem.appendChild(taskInfo);
+    taskInfo.appendChild(dl);
+    dl.appendChild(dt);
+    dl.appendChild(dd);
+
     showStatistic ();
 };
 
@@ -44,7 +68,9 @@ function handleFormAdSubmit(event){
     const task = {
         title: this.querySelector('[name="title"]').value,
         status: 1, // 1 - todo, 2 - inprogress, 3 - done
-        id: new Date().getTime()
+        id: new Date().getTime(),
+        date: this.querySelector('[name="date"]').value,
+		description: this.querySelector('[name="description"]').value
     };
 
     
@@ -63,7 +89,9 @@ function handleFormEditSubmit(event){
     const task = {
         title: this.querySelector('[name="title"]').value,
         status: +this.querySelector('[name="status"]').value,
-        id: this.querySelector('[name="id"]').value
+        id: this.querySelector('[name="id"]').value,
+        date: this.querySelector('[name="date"]').value,
+		description: this.querySelector('[name="description"]').value
     };
 
     localStorage.setItem(task.id, JSON.stringify(task));
@@ -78,9 +106,11 @@ function handleFormEditSubmit(event){
 //удаление всех задач с доски и очищение localStorage 
 function removeTasks(){
     localStorage.clear();
-    document.querySelector('[data-status]').innerHTML = '';
-    // как найти все элементы и поместить их в массив???
-    // Array.from(document.querySelectorAll('[data-status]').querySelectorAll('li'));
+    let allLi = document.querySelectorAll('[data-status]');
+    let arrayLi = Array.from(allLi);
+    arrayLi.forEach(element => element.innerText = "");
+    //то же самое что и в верху
+    //[...document.querySelectorAll('[data-status]')].forEach(element => element.innerText = "");
     showStatistic ();
 }
 
@@ -89,7 +119,6 @@ function handleButtonClick(event){
     // console.log(event.target.classList.contains('btn-delete'));
     
     // const target = event.target;
-    
     //деструктуризация - то же самое, что и верхнее
     const {target} = event;
     
